@@ -25,50 +25,16 @@
      function singleViewFilter() {
          sFilter = this.getAttribute("data-retter");
          console.log("Virk", this, sFilter);
-         visRet();
-
-
-
+         location.href = "single.html?id=" + sFilter;
      }
 
-     function visRet() {
-         document.querySelector(".single").innerHTML = "";
-         retter.forEach(retter => {
-             if (sFilter == retter.id) {
-                 document.querySelector(".single").classList.remove("hide");
-                 document.querySelector(".overlay").classList.remove("hide");
 
-
-                 document.querySelector(".single").innerHTML +=
-
-                     `<div class="vis2" data-retter="${retter.id}">
-
-<img src="imgs/large/${retter.billede}.jpg" alt="${retter.navn}">
-
-<div class="tekst">
- <h2>${retter.navn}</h2>
-<p>${retter.lang}</p>
-<p><b>Pris:</b> ${retter.pris},-</p>
-
-</div>  
-</div>`
-             }
-
-         });
-         document.querySelectorAll(".vis").forEach(elms => {
-             elms.addEventListener("click", singleViewFilter);
-         });
-
-         document.querySelector(".overlay").addEventListener("click", fjernsingle);
-         document.querySelector(".single").addEventListener("click", fjernsingle);
-
-
-     }
 
      function fjernsingle() {
          document.querySelector(".single").classList.add("hide");
          document.querySelector(".overlay").classList.add("hide");
      }
+
 
      async function getJson() {
          let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
